@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 3.10)
+project(a-sharp-Codegen)
+find_package(LLVM REQUIRED CONFIG)
+include_directories(${LLVM_INCLUDE_DIRS})
+link_directories(${LLVM_LIBRARY_DIRS})
+add_executable(codegen codegen.c)
+llvm_map_components_to_libnames(llvm_libs core native)
+target_link_libraries(codegen ${llvm_libs})

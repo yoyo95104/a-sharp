@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.10)
+project(a-sharp)
+add_subdirectory(llvm)
+add_custom_command(
+    OUTPUT zig_build
+    COMMAND zig build
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/compiler
+    COMMENT "Building Zig compiler"
+)
+add_custom_target(zig_compiler DEPENDS zig_build)
+add_custom_target(a-sharp ALL
+    DEPENDS compiler llvm
+)
